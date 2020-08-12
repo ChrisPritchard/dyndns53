@@ -2,7 +2,7 @@
 
 A simple program that will update AWS route 53's records for a domain with the local external IP address.
 
-Basically a golang version of [ddclient](https://github.com/ddclient/ddclient) but only targeting AWS Route 53 (at the time of writing), and in Golang.
+Basically a golang version of [ddclient](https://github.com/ddclient/ddclient) but only targeting AWS Route 53 (at the time of writing).
 
 Relies on https://ipinfo.io/ip to retrieve the current external IP address, so where this is run needs 443 access to the net. The external service address can be changed using the flag `--myip-service`.
 
