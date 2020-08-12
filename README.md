@@ -11,7 +11,6 @@ Patterned after and inspired by the following two bash equivalents (I wrote in g
 - https://willwarren.com/2014/07/03/roll-dynamic-dns-service-using-amazon-route53/
 - https://medium.com/@avishayil/dynamic-dns-using-aws-route-53-60a2331a58a4
 
-## Usage
+Also, slight advantage, this tool does not require `dig` or the AWS cli to be installed configured. It *DOES* require credentials to be configured however (which is easy to do with the cli, but can be done in a few different ways)
 
-The samples assume you have compiled/built this as `dyndns` for your platform (e.g. dyndns.exe on windows would still work as below from powershell).
-
+After configuring credentials (see [this page on guidance for how](https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials)), run with no args or `-h` to see configuration options.
