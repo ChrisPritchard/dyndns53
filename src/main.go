@@ -3,7 +3,6 @@ package main
 import (
 	"errors"
 	"flag"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"net"
@@ -21,19 +20,17 @@ var lastIPFilename = "./LATEST-IP-SET"
 func main() {
 	log.SetFlags(0)
 
-	if len(os.Args) < 3 {
-		log.Println("usage: dyndns53 [hosted zone id] [target domain name] [optional args]")
-		log.Println("to see optional args, use -h")
-		return
-	}
-
-	hostedZoneID := os.Args[1]
-	targetDomain := os.Args[2]
-
+	hostedZoneID := flag.String("hosted-zone-id", "", "route 53 hosted zone id (required)")
+	targetDomain := flag.String("target-domain", "", "the domain to update (required)")
 	overrideIPService := flag.String("myip-service", "", "external service to call to get the current ip address\nmust respond with just the ip address")
 	overrideCurrentIP := flag.String("currentip", "", "rather than querying the current ip using the ip service, just use this")
 	beSilent := flag.Bool("quiet", false, "controls whether any messages are printed to out")
 	flag.Parse()
+
+	if *hostedZoneID == "" || *targetDomain == "" {
+		flag.Usage()
+		return
+	}
 
 	logStatus := func(message string) {
 		if !*beSilent {
@@ -41,7 +38,7 @@ func main() {
 		}
 	}
 
-	logStatus("targeting domain " + targetDomain + " on hosted zone with id " + hostedZoneID)
+	logStatus("targeting domain " + *targetDomain + " on hosted zone with id " + *hostedZoneID)
 
 	myIPService := "https://ipinfo.io/ip"
 	if overrideIPService != nil && *overrideIPService != "" {
@@ -72,8 +69,8 @@ func main() {
 		logStatus("ip address hasn't changed, exiting")
 		return
 	}
-
-	err = updateAWS(hostedZoneID, targetDomain, newIP)
+	logStatus("updating AWS...")
+	err = updateAWS(*hostedZoneID, *targetDomain, newIP)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -139,7 +136,6 @@ func updateAWS(hostedZoneID, domain, newIPAddress string) error {
 		HostedZoneId: aws.String(hostedZoneID),
 	}
 
-	result, err := svc.ChangeResourceRecordSets(input)
-	fmt.Println(result)
+	_, err = svc.ChangeResourceRecordSets(input)
 	return err
 }

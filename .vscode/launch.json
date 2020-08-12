@@ -9,8 +9,7 @@
             "type": "go",
             "request": "launch",
             "mode": "auto",
-            "program": "${workspaceFolder}/src",
-            "args": ["Z013775923QS4J8U7LGV2","hack-weight.net"]
+            "program": "${workspaceFolder}/src"
         }
     ]
 }
