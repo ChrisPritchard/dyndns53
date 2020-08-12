@@ -14,3 +14,10 @@ Patterned after and inspired by the following two bash equivalents (I wrote in g
 Also, slight advantage, this tool does not require `dig` or the AWS cli to be installed configured. It *DOES* require credentials to be configured however (which is easy to do with the cli, but can be done in a few different ways)
 
 After configuring credentials (see [this page on guidance for how](https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials)), run with no args or `-h` to see configuration options.
+
+## Required packages to compile
+
+Just the following go gets:
+
+- `go get github.com/aws/aws-sdk-go/aws`
+- `go get github.com/aws/aws-sdk-go/service/route53`
