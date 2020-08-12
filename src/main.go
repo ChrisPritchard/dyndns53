@@ -73,7 +73,7 @@ func main() {
 		return
 	}
 
-	err := updateAWS(hostedZoneID, targetDomain, newIP)
+	err = updateAWS(hostedZoneID, targetDomain, newIP)
 	if err != nil {
 		log.Fatal(err)
 	}
