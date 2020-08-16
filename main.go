@@ -22,8 +22,8 @@ func main() {
 
 	hostedZoneID := flag.String("hosted-zone-id", "", "route 53 hosted zone id (required)")
 	targetDomain := flag.String("target-domain", "", "the domain to update (required)")
-	overrideIPService := flag.String("myip-service", "", "external service to call to get the current ip address\nmust respond with just the ip address")
-	overrideCurrentIP := flag.String("currentip", "", "rather than querying the current ip using the ip service, just use this")
+	overrideIPService := flag.String("ip-service", "", "external service to call to get the current ip address\nmust respond with just the ip address")
+	overrideCurrentIP := flag.String("current-ip", "", "rather than querying the current ip using the ip service, just use this")
 	beSilent := flag.Bool("quiet", false, "controls whether any messages are printed to out")
 	flag.Parse()
 
