@@ -19,6 +19,7 @@ var lastIPFilename = "./LATEST-IP-SET"
 
 func main() {
 	log.SetFlags(0)
+	log.SetOutput(os.Stdout)
 
 	hostedZoneID := flag.String("hosted-zone-id", "", "route 53 hosted zone id (required)")
 	targetDomain := flag.String("target-domain", "", "the domain to update (required)")
